@@ -6,13 +6,18 @@ import java.util.List;
 public class Bascket {
     List<Item> bascket = new ArrayList<>();
 
+    int totalPrice;
+
     public void addBascket(Item product){
         bascket.add(product);
-        System.out.println(bascket);
+        totalPrice += product.getPrice();
     }
 
     public List<Item> getBascket(){
         return bascket;
+    }
+    public int getTotalPrice(){
+        return totalPrice;
     }
 
 }

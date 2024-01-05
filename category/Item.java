@@ -9,6 +9,9 @@ public class Item {
         this.detail = detail;
         this.count = count;
     }
+    public void increaseCount(){
+        this.count++;
+    }
 
     public String toString(){
         return name;
@@ -23,7 +26,7 @@ public class Item {
     }
 
     public int getPrice() {
-        return price;
+        return price*count;
     }
 
     public int getCount() {

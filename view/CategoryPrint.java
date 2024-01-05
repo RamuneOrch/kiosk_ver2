@@ -19,8 +19,9 @@ public class CategoryPrint {
 
     public Item categoryPrint(List<Item> category){
         int sequence = 1;
+        String format = "%d. %s        |  가격 : %d  |  %s  |%n";
         for(Item category1 : category){
-            System.out.println(sequence + ". " + category1.getName() + "    |  가격 :   " + category1.getPrice() + "  |  " + category1.getDetail());
+            System.out.printf(format,sequence,category1.getName(),category1.getPrice(),category1.getDetail());
             sequence++;
         };
         System.out.println("-------------------------------------");
@@ -29,7 +30,8 @@ public class CategoryPrint {
     }
 
     public Item productCheck(Item product){
-        System.out.println("|   " + product.getName() + "    |  가격 : " + product.getPrice() + "  |   " + product.getDetail() + "    |");
+        String format = "|  %s  |  가격 : %d  |  %s  |%n";
+        System.out.printf(format,product.getName(),product.getPrice(),product.getDetail());
         System.out.println("위 상품을 장바구니에 추가하시겠습니까?");
         System.out.println("1. 확인       |       2. 취소");
         return product;

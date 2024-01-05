@@ -1,6 +1,5 @@
 package sparta.java_project.keyoskVer2.view;
 
-import sparta.java_project.keyoskVer2.ProductListInit;
 import sparta.java_project.keyoskVer2.category.Bascket;
 import sparta.java_project.keyoskVer2.category.Item;
 import sparta.java_project.keyoskVer2.data.CategoryName;
@@ -27,8 +26,9 @@ public class MainMenuOutput {
     public void mainMenuPrint() {
         System.out.println("-------------------------------------");
         int num = 1;
+        String format = "%d. %-5s      |      %3s %n";
         for (Map.Entry<String, String> categoryName1 : categoryName.getCategory().entrySet()) {
-            System.out.println(num + ". " + categoryName1.getKey() + "    |   " + categoryName1.getValue());
+            System.out.printf(format,num,categoryName1.getKey(),categoryName1.getValue());
             num++;
         }
         System.out.println("-------------------------------------");
@@ -38,6 +38,13 @@ public class MainMenuOutput {
         Item product = categoryPrint.getCategory(num);
         int checkNum = Console.getNumber();
         if(checkNum == 1){
+            checkBascketSame(product);
+        }
+    }
+
+    public void checkBascketSame(Item product){
+        List<Item> checkBascket = bascket.getBascket();
+        if(checkBascket.isEmpty() | checkBascket.stream().noneMatch(e->e == product)){
             addProductBascket(product);
             System.out.println("ㅁ-----------------------ㅁ");
             System.out.println("|   상품이 추가 되었습니다!  |");
@@ -47,6 +54,9 @@ public class MainMenuOutput {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+        else if(checkBascket.stream().anyMatch(e->e == product)){
+            product.increaseCount();
         }
     }
 
@@ -78,7 +88,7 @@ public class MainMenuOutput {
                     break;
                 case 4:
                     bascketAllPrint(bascket.getBascket());
-                    orderPrint.totalPricePrint();
+                    orderPrint.totalPricePrint(bascket.getTotalPrice());
                     break;
                 case 5:
                     break;
