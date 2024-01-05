@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListInit {
-    // 바꿀요지가 있으니 final선언은 하지않기
-    private Coffee coffeeList = new Coffee();
-    private Drink drinkList = new Drink();
-    private Dessert dessertList = new Dessert();
+    private final Coffee coffeeList = new Coffee();
+    private final Drink drinkList = new Drink();
+    private final Dessert dessertList = new Dessert();
     public List<List<Item>> productList = new ArrayList<>();
     public ProductListInit(){
         coffeeList.initProductList();

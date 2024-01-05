@@ -42,13 +42,22 @@ public class MainMenuOutput {
         }
     }
 
+    public void addProductBascket(Item product) {
+        bascket.addBascket(product);
+    }
+
+    public void addProductPrice(Item product){
+        bascket.addPrice(product);
+    }
+
     public void checkBascketSame(Item product){
         List<Item> checkBascket = bascket.getBascket();
         if(checkBascket.isEmpty() | checkBascket.stream().noneMatch(e->e == product)){
             addProductBascket(product);
-            System.out.println("ㅁ-----------------------ㅁ");
-            System.out.println("|   상품이 추가 되었습니다!  |");
-            System.out.println("ㅁ-----------------------ㅁ");
+            addProductPrice(product);
+            System.out.println("ㅁ------------------------ㅁ");
+            System.out.println("|   상품이 추가 되었습니다!   |");
+            System.out.println("ㅁ------------------------ㅁ");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -57,11 +66,8 @@ public class MainMenuOutput {
         }
         else if(checkBascket.stream().anyMatch(e->e == product)){
             product.increaseCount();
+            addProductPrice(product);
         }
-    }
-
-    public void addProductBascket(Item product) {
-        bascket.addBascket(product);
     }
 
     public void bascketAllPrint(List<Item> product){
@@ -71,6 +77,23 @@ public class MainMenuOutput {
     public void orderMenuCheck(){
         orderMenuOutput.orderMenuPrint();
     }
+
+    public void checkBascketList(){
+        if(bascket.getBascket().isEmpty()){
+            orderPrint.checkBascketEmpty();
+        } else{
+            orderTotalPrint();
+        }
+    }
+
+    public void orderTotalPrint(){
+        bascketAllPrint(bascket.getBascket());
+        if(orderPrint.totalPricePrint(bascket.getTotalPrice()) == 1){
+            orderPrint.orderComplete(bascket);
+        };
+    }
+
+
 
 
     public MainMenuOutput() {
@@ -87,10 +110,10 @@ public class MainMenuOutput {
                     detailCategoryPrint(checkNumber);
                     break;
                 case 4:
-                    bascketAllPrint(bascket.getBascket());
-                    orderPrint.totalPricePrint(bascket.getTotalPrice());
+                    checkBascketList();
                     break;
                 case 5:
+                    bascket.clearBascket();
                     break;
                 case 9:
                     this.loopCheck = false;

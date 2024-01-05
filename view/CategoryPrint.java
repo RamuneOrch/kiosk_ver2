@@ -16,7 +16,6 @@ public class CategoryPrint {
         Item product = categoryPrint(productListInit.getProductList().get(num));
         return productCheck(product);
     }
-
     public Item categoryPrint(List<Item> category){
         int sequence = 1;
         String format = "%d. %s        |  가격 : %d  |  %s  |%n";
@@ -28,7 +27,6 @@ public class CategoryPrint {
         System.out.println("어떤 메뉴를 고르시겠습니까 ?");
         return category.get(sc.nextInt() - 1);
     }
-
     public Item productCheck(Item product){
         String format = "|  %s  |  가격 : %d  |  %s  |%n";
         System.out.printf(format,product.getName(),product.getPrice(),product.getDetail());
