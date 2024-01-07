@@ -43,7 +43,7 @@ public class MainMenuOutput {
     }
 
     public void addProductBascket(Item product) {
-        bascket.addBascket(product);
+        bascket.addProduct(product);
     }
 
     public void addProductPrice(Item product){
@@ -86,6 +86,14 @@ public class MainMenuOutput {
         }
     }
 
+    public void clearBascketCheck(){
+        System.out.println("주문을 취소하시겠습니까?");
+        System.out.println("1. 확인         |         2. 취소");
+        if(Console.getNumber() == 1){
+            bascket.clearBascket();
+        }
+    }
+
     public void orderTotalPrint(){
         bascketAllPrint(bascket.getBascket());
         if(orderPrint.totalPricePrint(bascket.getTotalPrice()) == 1){
@@ -93,16 +101,12 @@ public class MainMenuOutput {
         };
     }
 
-
-
-
-    public MainMenuOutput() {
+    public void start(){
         this.loopCheck = true;
         while(this.loopCheck){
             greet();
             mainMenuPrint();
             orderMenuCheck();
-            // orderMenuCheck 이 부분이 ArrayList.add가 계속 실행이 된다.
             System.out.println();
             int checkNumber = Console.getNumber();
             switch (checkNumber){
@@ -113,7 +117,7 @@ public class MainMenuOutput {
                     checkBascketList();
                     break;
                 case 5:
-                    bascket.clearBascket();
+                    clearBascketCheck();
                     break;
                 case 9:
                     this.loopCheck = false;

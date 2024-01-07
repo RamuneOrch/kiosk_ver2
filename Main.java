@@ -8,5 +8,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         MainMenuOutput mainMenuOutput = new MainMenuOutput();
+        mainMenuOutput.start();
     }
 }

@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bascket {
-    List<Item> bascket = new ArrayList<>();
+    private final List<Item> bascket = new ArrayList<>();
 
     int totalPrice;
 
-    public void addBascket(Item product){
+    public void addProduct(Item product){
         bascket.add(product);
     }
 
@@ -31,11 +31,5 @@ public class Bascket {
         totalPrice = 0;
     }
 
-    public void clearBascketCheck(){
-        System.out.println("주문을 취소하시겠습니까?");
-        System.out.println("1. 확인         |         2. 취소");
-        if(Console.getNumber() == 1){
-            clearBascket();
-        }
-    }
+
 }
